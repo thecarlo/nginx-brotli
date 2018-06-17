@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y \
 
 #download nginx
 RUN cd /usr/local/src \
-    && wget http://nginx.org/download/nginx-1.13.12.tar.gz \
+    && wget http://nginx.org/download/nginx-1.15.0.tar.gz \
     && tar -xzvf nginx-1.15.0.tar.gz
 
 RUN cd /usr/local/src \
