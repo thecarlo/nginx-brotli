@@ -1,3 +1,5 @@
+ARG NGINX_LATEST_VERSION='nginx-1.14.0'
+
 FROM ubuntu:16.04
 
 LABEL maintainer="Carlo van Wyk - https://www.humankode.com/contact"
@@ -25,8 +27,8 @@ RUN apt-get update && apt-get install -y \
 
 #download nginx
 RUN cd /usr/local/src \
-    && wget http://nginx.org/download/nginx-1.15.0.tar.gz \
-    && tar -xzvf nginx-1.15.0.tar.gz
+    && wget http://nginx.org/download/${NGINX_LATEST_VERSION}.tar.gz \
+    && tar -xzvf ${NGINX_LATEST_VERSION}.tar.gz
 
 RUN cd /usr/local/src \
     && git clone https://github.com/google/ngx_brotli.git --recursive \
@@ -36,7 +38,7 @@ RUN cd /usr/local/src \
 
 RUN ls -la /usr/local/src/ngx_brotli
 
-WORKDIR /usr/local/src/nginx-1.15.0
+WORKDIR /usr/local/src/${NGINX_LATEST_VERSION}
 RUN ./configure --with-cc-opt='-g -O2 -fPIE -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2' \
     --with-ld-opt='-Wl,-Bsymbolic-functions -fPIE -pie -Wl,-z,relro -Wl,-z,now' \
     --prefix=/usr/share/nginx \
