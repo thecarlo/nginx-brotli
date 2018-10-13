@@ -24,6 +24,8 @@ RUN apt-get update && apt-get install -y \
     libperl-dev
 
 #download nginx
+#http://nginx.org/download/
+#http://nginx.org/en/download.html
 RUN cd /usr/local/src \
     && wget http://nginx.org/download/nginx-1.14.0.tar.gz \
     && tar -xzvf nginx-1.14.0.tar.gz
