@@ -27,8 +27,8 @@ RUN apt-get update && apt-get install -y \
 #http://nginx.org/download/
 #http://nginx.org/en/download.html
 RUN cd /usr/local/src \
-    && wget http://nginx.org/download/nginx-1.17.8.tar.gz \
-    && tar -xzvf nginx-1.17.8.tar.gz
+    && wget http://nginx.org/download/nginx-1.18.0.tar.gz \
+    && tar -xzvf nginx-1.18.0.tar.gz
 
 RUN cd /usr/local/src \
     && git clone https://github.com/google/ngx_brotli.git --recursive \
@@ -38,7 +38,7 @@ RUN cd /usr/local/src \
 
 RUN ls -la /usr/local/src/ngx_brotli
 
-WORKDIR /usr/local/src/nginx-1.17.8
+WORKDIR /usr/local/src/nginx-1.18.0
 RUN ./configure --with-cc-opt='-g -O2 -fPIE -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2' \
     --with-ld-opt='-Wl,-Bsymbolic-functions -fPIE -pie -Wl,-z,relro -Wl,-z,now' \
     --prefix=/usr/share/nginx \
